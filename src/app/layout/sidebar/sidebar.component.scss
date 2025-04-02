@@ -1,5 +1,4 @@
 .sidebar-container {
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 16px 0;
@@ -8,6 +7,7 @@
 .logo {
   padding: 16px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .logo-image {
@@ -17,6 +17,11 @@
 
 .nav-links {
   margin-top: 32px;
+  flex: 1;
+}
+
+.nav-links a {
+  width: auto;
 }
 
 :host ::ng-deep {

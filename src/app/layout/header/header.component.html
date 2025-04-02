@@ -1,12 +1,12 @@
 <div class="header-container">
   <div class="spacer"></div>
   <button mat-button [matMenuTriggerFor]="menu" class="account-button">
+    <div class="account-avatar">
+      <img src="assets/avatar.png" alt="User avatar" class="avatar-image">
+    </div>
     <div class="account-info">
       <div class="account-name">John Doe</div>
       <div class="account-role">Administrator</div>
-    </div>
-    <div class="account-avatar">
-      <img src="assets/avatar.png" alt="User avatar" class="avatar-image">
     </div>
   </button>
   <mat-menu #menu="matMenu">
@@ -14,7 +14,7 @@
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onLogoutClick()">
       <mat-icon>logout</mat-icon>
       <span>Sign out</span>
     </button>

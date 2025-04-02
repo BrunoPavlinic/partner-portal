@@ -15,4 +15,8 @@ export class HeaderComponent {
   onAccountClick() {
     alert('User settings clicked');
   }
+
+  onLogoutClick() {
+    alert('User logout clicked');
+  }
 } 

@@ -19,6 +19,7 @@
 }
 
 .account-info {
+  display: inline-block;
   text-align: right;
   @media (max-width: 480px) {
     display: none;
@@ -42,6 +43,7 @@
   height: 32px;
   border-radius: 50%;
   overflow: hidden;
+  display: inline-block;
 }
 
 .avatar-image {
