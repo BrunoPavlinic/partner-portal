@@ -1,0 +1,19 @@
+<mat-sidenav-container class="layout-container">
+  <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" 
+               [opened]="!isMobile" 
+               class="sidebar" 
+               [fixedInViewport]="true">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content class="main-content">
+    <button mat-icon-button *ngIf="isMobile" 
+            (click)="sidenav.toggle()" 
+            class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-header class="header"></app-header>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> 
