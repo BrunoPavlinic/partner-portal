@@ -1,4 +1,9 @@
 <div class="dashboard-container">
-  <h1 class="mat-headline-4">Dashboard</h1>
-      <p>Welcome to the Partner Portal dashboard. This is where you'll find an overview of your partnership metrics and key information.</p>
+
+    <app-partner-table
+        [partners]="filteredPartners"
+        [tableState]="tableState"
+        (pageChange)="onPageChange($event)"
+        (sortChange)="onSortChange($event)">
+    </app-partner-table>
 </div> 
