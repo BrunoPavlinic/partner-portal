@@ -6,10 +6,23 @@
     padding: 1rem;
 }
 
+.table-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 table {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     border-collapse: collapse;
+}
+
+// Additional styling for the paginator to match table style
+.mat-mdc-paginator {
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
 /* Remove borders */
@@ -19,10 +32,23 @@ table {
 
 .mat-mdc-header-row {
     background-color: $primary-color;
+    border-radius: 12px 12px 0 0;
+}
+
+.mat-mdc-header-row th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.mat-mdc-header-row th:last-child {
+    border-top-right-radius: 12px;
 }
 
 .mat-mdc-header-row th {
     font-weight: 100;
+}
+
+:host {
+    --mat-sort-arrow-color: white;
 }
 
 .mat-mdc-header-cell {
@@ -61,12 +87,12 @@ table {
 }
 
 .details-button {
-    background-color: #6C47FF;
+    background-color: #6033ce;
     color: white;
     border-radius: 100px;
     display: flex;
     align-items: center;
-    padding: 5%;
+    padding: 8%;
     cursor: pointer;
     mat-icon {
         margin-right: 4px;
@@ -83,7 +109,8 @@ table {
         overflow-x: auto;
     }
     
-    table {
+    .table-wrapper {
         min-width: 800px;
+        width: 100%;
     }
 } 

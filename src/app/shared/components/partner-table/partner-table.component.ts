@@ -25,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class PartnerTableComponent {
     @Input() partners: Partner[] = [];
     @Input() tableState!: PartnerTableState;
-    @Output() pageChange = new EventEmitter<number>();
+    @Output() pageChange = new EventEmitter<any>();
     @Output() sortChange = new EventEmitter<{active: string; direction: string}>();
 
     displayedColumns: string[] = [
@@ -40,7 +40,7 @@ export class PartnerTableComponent {
     ];
 
     onPageChange(event: any): void {
-        this.pageChange.emit(event.pageIndex + 1);
+        this.pageChange.emit(event);
     }
 
     onSortChange(event: any): void {

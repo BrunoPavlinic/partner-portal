@@ -60,8 +60,11 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    onPageChange(page: number): void {
-        this.tableState.currentPage = page;
+    onPageChange(event: any): void {
+        this.tableState.currentPage = event.pageIndex + 1;
+        if (this.tableState.pageSize !== event.pageSize) {
+            this.tableState.pageSize = event.pageSize;
+        }
         this.updateDisplayedPartners();
     }
 
