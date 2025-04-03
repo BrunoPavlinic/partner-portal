@@ -6,5 +6,6 @@ export const API_ENDPOINTS = {
 
 export const API_CONFIG = {
     MOCK_DELAY: 5000,
-    DEFAULT_PAGE_SIZE: 15
+    DEFAULT_PAGE_SIZE: 15,
+    REQUEST_TIMEOUT: 15000 // 15 seconds timeout for API requests
 } as const; 

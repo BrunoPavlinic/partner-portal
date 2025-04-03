@@ -44,8 +44,16 @@ export class DashboardComponent implements OnInit {
                 this.tableState.totalItems = partners.length;
                 this.updateDisplayedPartners();
                 this.tableState.loading = false;
+                
+                // Show error message if no partners are returned but no explicit error occurred
+                if (partners.length === 0) {
+                    this.tableState.error = 'No partners data available.';
+                }
             },
             error: (error) => {
+                this.partners = [];
+                this.filteredPartners = [];
+                this.tableState.totalItems = 0;
                 this.tableState.error = 'Failed to load partners. Please try again later.';
                 this.tableState.loading = false;
             }

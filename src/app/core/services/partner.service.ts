@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, timeout, throwError } from 'rxjs';
 import { Partner } from '../models/partner.model';
-import { API_ENDPOINTS } from '../constants/api.constants';
+import { API_ENDPOINTS, API_CONFIG } from '../constants/api.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +13,7 @@ export class PartnerService {
     getPartners(): Observable<Partner[]> {
         return this.http.get<any>(API_ENDPOINTS.PARTNERS.LIST)
             .pipe(
+                timeout(API_CONFIG.REQUEST_TIMEOUT || 15000), // Default timeout of 15 seconds if not configured
                 map(response => {
                     // Convert object response to array if needed
                     let partners: any[];
@@ -20,6 +21,10 @@ export class PartnerService {
                         partners = Object.values(response);
                     } else {
                         partners = response;
+                    }
+
+                    if (!partners || partners.length === 0) {
+                        return [];
                     }
 
                     // Convert string IDs to numbers and ensure correct typing
@@ -32,7 +37,6 @@ export class PartnerService {
                     } as Partner));
                 }),
                 catchError(error => {
-                    console.error('Error fetching partners:', error);
                     return of([]);
                 })
             );
