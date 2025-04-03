@@ -1,5 +1,5 @@
 export interface Partner {
-    id: string;
+    id: number;
     partnerName: string;
     partnerType: string;
     conversions: number;

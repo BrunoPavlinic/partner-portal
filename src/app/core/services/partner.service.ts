@@ -11,79 +11,53 @@ export class PartnerService {
     constructor(private http: HttpClient) {}
 
     getPartners(): Observable<Partner[]> {
-        return of([
-            {
-                id: '1',
-                partnerName: 'Green Living',
-                partnerType: 'Influencer', 
-                conversions: 7,
-                commissions: 420,
-                grosssales: 620,
-                contract: 'Partner Default'
-            },
-            {
-                id: '2',
-                partnerName: 'Tech Reviews Pro',
-                partnerType: 'Content Creator',
-                conversions: 12,
-                commissions: 850,
-                grosssales: 1200,
-                contract: 'Premium Partner'
-            },
-            {
-                id: '3',
-                partnerName: 'Fitness First',
-                partnerType: 'Affiliate',
-                conversions: 5,
-                commissions: 300,
-                grosssales: 450,
-                contract: 'Partner Default'
-            },
-            {
-                id: '4',
-                partnerName: 'Green Living',
-                partnerType: 'Influencer', 
-                conversions: 7,
-                commissions: 420,
-                grosssales: 620,
-                contract: 'Partner Default'
-            },
-            {
-                id: '5',
-                partnerName: 'Tech Reviews Pro',
-                partnerType: 'Content Creator',
-                conversions: 12,
-                commissions: 850,
-                grosssales: 1200,
-                contract: 'Premium Partner'
-            },
-            {
-                id: '6',
-                partnerName: 'Fitness First',
-                partnerType: 'Affiliate',
-                conversions: 5,
-                commissions: 300,
-                grosssales: 450,
-                contract: 'Partner Default'
-            }
-        ]);
-        // return this.http.get<Partner[]>(API_ENDPOINTS.PARTNERS.LIST)
-        //     .pipe(
-        //         catchError(error => {
-        //             console.error('Error fetching partners:', error);
-        //             return of([]);
-        //         })
-        //     );
+        return this.http.get<any>(API_ENDPOINTS.PARTNERS.LIST)
+            .pipe(
+                map(response => {
+                    // Convert object response to array if needed
+                    let partners: any[];
+                    if (response && !Array.isArray(response)) {
+                        partners = Object.values(response);
+                    } else {
+                        partners = response;
+                    }
+
+                    // Convert string IDs to numbers and ensure correct typing
+                    return partners.map(partner => ({
+                        ...partner,
+                        id: parseInt(partner.id, 10),
+                        conversions: Number(partner.conversions),
+                        commissions: Number(partner.commissions),
+                        grosssales: Number(partner.grosssales)
+                    } as Partner));
+                }),
+                catchError(error => {
+                    console.error('Error fetching partners:', error);
+                    return of([]);
+                })
+            );
     }
 
     // Helper method to paginate partners on the client side
-    paginatePartners(partners: Partner[], page: number, pageSize: number): Partner[] {
+    paginatePartners(partners: Partner[] | Record<string, Partner>, page: number, pageSize: number): Partner[] {        
+        // Check if partners is an object with numeric keys instead of an array
+        if (!Array.isArray(partners)) {
+            // Convert object to array
+            partners = Object.values(partners);
+        }
+        
         const startIndex = (page - 1) * pageSize;
-        return partners.slice(startIndex, startIndex + pageSize);
+        const result = partners.slice(startIndex, startIndex + pageSize);
+        return result;
     }
 
     // Helper method to sort partners
-    sortPartners(partners: Partner[], field: keyof Partner, ascending: boolean = true): Partner[] {
+    sortPartners(partners: Partner[] | Record<string, Partner>, field: keyof Partner, ascending: boolean = true): Partner[] {
+        // Convert to array if it's an object
+        if (!Array.isArray(partners)) {
+            partners = Object.values(partners);
+        }
+
         return [...partners].sort((a, b) => {
             const aValue = a[field];
             const bValue = b[field];
@@ -101,7 +75,12 @@ export class PartnerService {
     }
 
     // Helper method to filter partners
-    filterPartners(partners: Partner[], filters: Partial<Partner>): Partner[] {
+    filterPartners(partners: Partner[] | Record<string, Partner>, filters: Partial<Partner>): Partner[] {
+        // Convert to array if it's an object
+        if (!Array.isArray(partners)) {
+            partners = Object.values(partners);
+        }
+
         return partners.filter(partner => {
             return Object.entries(filters).every(([key, value]) => {
                 if (!value) return true;
