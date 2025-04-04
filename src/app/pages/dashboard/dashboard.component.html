@@ -1,17 +1,4 @@
 <div class="page-container">
-    <div class="page-header">
-        <div class="plate-select-container">
-            <mat-form-field appearance="outline">
-                <mat-select [formControl]="plateControl">
-                    @for (option of plateOptions; track option.value) {
-                        <mat-option [value]="option.value">{{option.viewValue}}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <h2>Dashboard</h2>
-    </div>
-
     <app-partner-table
         [partners]="filteredPartners"
         [tableState]="tableState"

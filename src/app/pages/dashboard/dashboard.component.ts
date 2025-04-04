@@ -26,12 +26,6 @@ export class DashboardComponent implements OnInit {
     
     partners: Partner[] = [];
     filteredPartners: Partner[] = [];
-    plateControl = new FormControl('power');
-    plateOptions: {value: string, viewValue: string}[] = [
-        {value: 'power', viewValue: 'Power Plate'},
-        {value: 'super', viewValue: 'Super Plate'},
-        {value: 'mega', viewValue: 'Mega Plate'}
-    ];
     tableState: PartnerTableState = {
         currentPage: 1,
         pageSize: API_CONFIG.DEFAULT_PAGE_SIZE,
@@ -75,9 +69,6 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadPartners();
-        this.plateControl.valueChanges.subscribe(value => {
-            this.onPlateChange(value);
-        });
     }
 
     private loadPartners(): void {
@@ -130,12 +121,6 @@ export class DashboardComponent implements OnInit {
                 event.direction === 'asc'
             );
             this.updateDisplayedPartners();
-        }
-    }
-
-    onPlateChange(value: string | null): void {
-        if (value) {
-            alert(`Plate value changed to: ${value}`);
         }
     }
 
