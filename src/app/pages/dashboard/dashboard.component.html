@@ -1,9 +1,15 @@
-<div class="dashboard-container">
+<div class="page-container">
+    <div class="page-header">
+        <h2>Dashboard</h2>
+    </div>
 
     <app-partner-table
         [partners]="filteredPartners"
         [tableState]="tableState"
+        [actionButtons]="tableActionButtons"
+        [filterButtons]="tableFilterButtons"
         (pageChange)="onPageChange($event)"
-        (sortChange)="onSortChange($event)">
+        (sortChange)="onSortChange($event)"
+        (dateRangeChange)="onDateRangeChange($event)">
     </app-partner-table>
 </div> 

@@ -22,4 +22,19 @@ export interface PartnerFilters {
         start: Date;
         end: Date;
     };
+}
+
+export interface TableActionButton {
+    label: string;
+    cssClass: string;
+    icon?: string;
+    action: string | (() => void); // Can be either an action identifier string or a callable function
+}
+
+export interface TableFilterButton {
+    label: string;
+    cssClass: string;
+    icon?: string;
+    isDateRange?: boolean;
+    action: string | (() => void); // Can be either an action identifier string or a callable function
 } 

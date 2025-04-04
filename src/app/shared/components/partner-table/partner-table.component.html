@@ -13,6 +13,65 @@
 
     @if (!tableState.loading && !tableState.error) {
         @if (partners && partners.length > 0) {
+            <div class="table-actions">
+                <div class="filter-buttons">
+                    @for (button of filterButtons; track $index) {
+                        @if (button.isDateRange) {
+                            <button mat-button 
+                                    [class]="button.cssClass"
+                                    [matMenuTriggerFor]="dateRangeMenu">
+                                @if (button.icon) {
+                                    <mat-icon>{{button.icon}}</mat-icon>
+                                }
+                                <span>{{dateRangeLabel}}</span>
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </button>
+                            <mat-menu #dateRangeMenu="matMenu" class="date-range-menu">
+                                <div class="date-range-picker" (click)="$event.stopPropagation()">
+                                    <div class="date-inputs">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Start date</mat-label>
+                                            <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate">
+                                            <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+                                            <mat-datepicker #startPicker></mat-datepicker>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>End date</mat-label>
+                                            <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate">
+                                            <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+                                            <mat-datepicker #endPicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="date-actions">
+                                        <button mat-button (click)="onDateRangeApply()">Apply</button>
+                                    </div>
+                                </div>
+                            </mat-menu>
+                        } @else {
+                            <button mat-button 
+                                    [class]="button.cssClass"
+                                    (click)="onButtonClick(button.action)">
+                                @if (button.icon) {
+                                    <mat-icon>{{button.icon}}</mat-icon>
+                                }
+                                {{button.label}}
+                            </button>
+                        }
+                    }
+                </div>
+                <div class="action-buttons">
+                    @for (button of actionButtons; track $index) {
+                        <button mat-button 
+                                [class]="button.cssClass"
+                                (click)="onButtonClick(button.action)">
+                            @if (button.icon) {
+                                <mat-icon iconPositionEnd>{{button.icon}}</mat-icon>
+                            }
+                            {{button.label}}
+                        </button>
+                    }
+                </div>
+            </div>
             <div class="table-wrapper">
                 <table mat-table [dataSource]="partners" matSort (matSortChange)="onSortChange($event)">
                     <!-- ID Column -->

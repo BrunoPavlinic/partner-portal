@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Partner, PartnerTableState } from '../../core/models/partner.model';
+import { Partner, PartnerTableState, TableActionButton, TableFilterButton } from '../../core/models/partner.model';
 import { PartnerService } from '../../core/services/partner.service';
 import { PartnerTableComponent } from '../../shared/components/partner-table/partner-table.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +29,39 @@ export class DashboardComponent implements OnInit {
         loading: true,
         error: null
     };
+
+    // Define action buttons
+    tableActionButtons: TableActionButton[] = [
+        {
+            label: 'Choose Columns',
+            cssClass: 'action-btn primary-btn',
+            icon: 'reorder',
+            action: () => this.chooseColumns()
+        },
+        {
+            label: 'Message Partners',
+            cssClass: 'action-btn primary-btn',
+            icon: 'mail_outlined',
+            action: () => this.messagePartners()
+        },
+        {
+            label: 'Export List',
+            cssClass: 'action-btn primary-btn',
+            icon: 'download',
+            action: () => this.exportList()
+        }
+    ];
+
+    // Define filter buttons
+    tableFilterButtons: TableFilterButton[] = [
+        {
+            label: 'Date Range',
+            cssClass: 'filter-btn date-range-btn',
+            icon: 'calendar_today',
+            isDateRange: true,
+            action: () => this.onDateRangeChange()
+        }
+    ];
 
     ngOnInit(): void {
         this.loadPartners();
@@ -85,5 +118,23 @@ export class DashboardComponent implements OnInit {
             );
             this.updateDisplayedPartners();
         }
+    }
+
+    onDateRangeChange(range?: {start: Date, end: Date}): void {
+        if (range) {
+            alert(`Date range changed to: ${range.start.toDateString()} - ${range.end.toDateString()}`);
+        }
+    }
+
+    private chooseColumns(): void {
+        alert('Choose Columns functionality coming soon!');
+    }
+
+    private messagePartners(): void {
+        alert('Message Partners functionality coming soon!');
+    }
+
+    private exportList(): void {
+        alert('Export List functionality coming soon!');
     }
 } 

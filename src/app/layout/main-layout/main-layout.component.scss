@@ -4,8 +4,6 @@
 
 .sidebar {
   width: 250px;
-  background-color: #f5f5f5;
-  border-right: 1px solid #e0e0e0;
 }
 
 .main-content {
@@ -15,12 +13,10 @@
 
 .header {
   height: 64px;
-  border-bottom: 1px solid #e0e0e0;
 }
 
 .content {
   flex: 1;
-  padding: 24px;
   overflow-y: auto;
 }
 
