@@ -99,4 +99,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogoutClick() {
     alert('User logout clicked');
   }
+
+  onReportChange(event: Event) {
+    alert('Report changed to ' + (event.target as HTMLSelectElement).value);
+  }
 } 

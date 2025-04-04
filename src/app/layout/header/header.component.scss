@@ -1,3 +1,5 @@
+@import '../../shared/styles/variables.scss';
+
 .header-container {
   height: 100%;
   display: flex;
@@ -59,3 +61,39 @@ h2 {
   margin: 0;
   padding-left: 4px;
 }
+
+.report-select-container {
+  gap: 12px;
+}
+
+.report-select {
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  color: $primary-color;
+  font-size: large;
+  height: 36px;
+  padding: 0 12px;
+  min-width: 200px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  padding-left: 0;
+
+  option {
+    padding: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .report-select-container {
+    margin-left: 48px;
+    font-size: small;
+
+    option {
+      padding: 8px;
+      font-size: small;
+    }
+  }
+}
+

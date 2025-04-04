@@ -9,33 +9,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 0 auto;
   }
   
-  .page-header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+.page-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
   
-    .report-select-container {
-      margin-bottom: 8px;
-      
-      mat-form-field {
-        width: 200px;
-        font-weight: bold;
-      }
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .dashboard-container {
-      padding: 1rem;
-    }
-  
-    .dashboard-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-  }
-  
-  mat-card {
-    margin-bottom: 24px;
-  } 
+mat-card {
+  margin-bottom: 24px;
+} 

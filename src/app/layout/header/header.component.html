@@ -1,6 +1,6 @@
 <div class="header-container">
   <div class="report-select-container">
-    <select class="report-select" [(ngModel)]="selectedReport">
+    <select class="report-select" [(ngModel)]="selectedReport" (change)="onReportChange($event)">
       <option *ngFor="let option of reportOptions" [value]="option.value">
         {{ option.label }}
       </option>
