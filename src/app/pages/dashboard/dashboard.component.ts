@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
         {
             label: 'Date Range',
             cssClass: 'filter-btn date-range-btn',
-            icon: 'calendar_today',
+            icon: 'calendar_month',
             isDateRange: true,
             action: () => this.onDateRangeChange()
         }

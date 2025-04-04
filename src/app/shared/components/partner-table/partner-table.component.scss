@@ -132,7 +132,6 @@ table {
 }
 
 .mat-column-actions {
-    width: 80px;
     text-align: center;
 }
 
@@ -142,7 +141,7 @@ table {
     border-radius: 100px;
     display: flex;
     align-items: center;
-    padding: 8%;
+    padding: 25%;
     cursor: pointer;
     mat-icon {
         margin-right: 4px;
@@ -229,6 +228,15 @@ button.light-btn {
 // Date Range Picker styles
 .date-range-menu {
     min-width: 500px;
+}
+
+.date-range-btn {
+    color: $primary-color;
+    min-width: 250px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 4px;
 }
 
 .date-range-picker {
