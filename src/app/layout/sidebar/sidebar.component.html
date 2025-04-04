@@ -3,15 +3,15 @@
     <img src="assets/logo.svg" alt="Logo" class="logo-image">
   </div>
   <mat-nav-list class="nav-links">
-    <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+    <a mat-list-item routerLink="/dashboard" routerLinkActive="active" (click)="onLinkClick()">
       <mat-icon matListItemIcon>home_outline</mat-icon>
       <span matListItemTitle>Dashboard</span>
     </a>
-    <a mat-list-item routerLink="/partners" routerLinkActive="active">
+    <a mat-list-item routerLink="/partners" routerLinkActive="active" (click)="onLinkClick()">
       <mat-icon matListItemIcon>person</mat-icon>
       <span matListItemTitle>Partners</span>
     </a>
-    <a mat-list-item routerLink="/approvals" routerLinkActive="active">
+    <a mat-list-item routerLink="/approvals" routerLinkActive="active" (click)="onLinkClick()">
       <mat-icon matListItemIcon>check_box</mat-icon>
       <span matListItemTitle>Approvals</span>
     </a>

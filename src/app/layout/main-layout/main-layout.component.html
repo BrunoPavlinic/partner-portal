@@ -3,7 +3,7 @@
                [opened]="!isMobile" 
                class="sidebar" 
                [fixedInViewport]="true">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (linkClicked)="onSidebarLinkClicked(sidenav)"></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content class="main-content">
     <button mat-icon-button *ngIf="isMobile" 
