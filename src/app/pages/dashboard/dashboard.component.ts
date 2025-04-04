@@ -4,6 +4,8 @@ import { Partner, PartnerTableState, TableActionButton, TableFilterButton } from
 import { PartnerService } from '../../core/services/partner.service';
 import { PartnerTableComponent } from '../../shared/components/partner-table/partner-table.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { API_CONFIG } from '../../core/constants/api.constants';
 
 @Component({
@@ -12,7 +14,9 @@ import { API_CONFIG } from '../../core/constants/api.constants';
     imports: [
         CommonModule,
         PartnerTableComponent,
-        MatButtonModule
+        MatButtonModule,
+        MatSelectModule,
+        ReactiveFormsModule
     ],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
@@ -22,6 +26,12 @@ export class DashboardComponent implements OnInit {
     
     partners: Partner[] = [];
     filteredPartners: Partner[] = [];
+    plateControl = new FormControl('power');
+    plateOptions: {value: string, viewValue: string}[] = [
+        {value: 'power', viewValue: 'Power Plate'},
+        {value: 'super', viewValue: 'Super Plate'},
+        {value: 'mega', viewValue: 'Mega Plate'}
+    ];
     tableState: PartnerTableState = {
         currentPage: 1,
         pageSize: API_CONFIG.DEFAULT_PAGE_SIZE,
@@ -65,6 +75,9 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadPartners();
+        this.plateControl.valueChanges.subscribe(value => {
+            this.onPlateChange(value);
+        });
     }
 
     private loadPartners(): void {
@@ -117,6 +130,12 @@ export class DashboardComponent implements OnInit {
                 event.direction === 'asc'
             );
             this.updateDisplayedPartners();
+        }
+    }
+
+    onPlateChange(value: string | null): void {
+        if (value) {
+            alert(`Plate value changed to: ${value}`);
         }
     }
 
