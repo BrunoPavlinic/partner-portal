@@ -1,6 +1,30 @@
-# PartnerPortal
+# Partner Portal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## Project Overview
+This Partner Portal is an Angular-based application designed to manage and monitor partner relationships. The application provides functionalities for viewing partners' data, managing approvals, and monitoring performance metrics through a dashboard.
+
+Key features include:
+- Dashboard with performance metrics visualization
+- Partner management with filtering, sorting, and pagination capabilities
+- Approval workflow for partner requests
+- Responsive design using Angular Material components
+
+Challenges encountered during development included implementing efficient client-side data handling for partner records and optimizing the application for performance with large datasets.
+
+## Technologies Used
+- **Angular:** Version 19.2.0
+- **Angular Material:** Version 19.2.7 for UI components
+- **RxJS:** Version 7.8.0 for reactive programming
+- **TypeScript:** Version 5.7.2
+- **Angular CDK:** Version 19.2.7
+
+## Error Handling
+The application implements several error handling mechanisms:
+
+- **API Request Timeout:** Configured timeout of 15 seconds for API requests to prevent infinite loading states
+- **Error State Management:** Dedicated error state tracking in the PartnerTableState interface
+- **Graceful Degradation:** Fallback to empty arrays when API requests fail, allowing the UI to render without crashing
+- **Error Boundaries:** Components are designed to handle and display appropriate error messages when data fetching fails
 
 ## Development server
 
